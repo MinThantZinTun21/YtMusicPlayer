@@ -133,6 +133,8 @@
     <string name="download_wifi_only">Descargar solo mediante Wi-Fi</string>
     <string name="spatial_audio">Audio espacial</string>
     <string name="spatial_audio_subtitle">Amplía las pistas estéreo para una experiencia más inmersiva</string>
+    <string name="vocal_off">Sin voz</string>
+    <string name="vocal_off_subtitle">Karaoke: quita la banda de voz en todos los canales. El bajo y el aire se quedan.</string>
     <string name="animated_cover_cellular">Reproducir portada animada con datos móviles</string>
     <string name="replay">Resumen anual</string>
     <string name="replay_subtitle">Tus canciones, artistas, álbumes y géneros principales</string>

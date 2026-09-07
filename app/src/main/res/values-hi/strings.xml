@@ -133,6 +133,8 @@
     <string name="download_wifi_only">केवल Wi-Fi पर डाउनलोड करें</string>
     <string name="spatial_audio">स्पेशियल ऑडियो</string>
     <string name="spatial_audio_subtitle">ज़्यादा इमर्सिव अनुभव के लिए स्टीरियो ट्रैक को चौड़ा करता है</string>
+    <string name="vocal_off">वोकल बंद</string>
+    <string name="vocal_off_subtitle">कराओके: स्टीरियो मिक्स में बीच के वोकल हटाता है। बास और स्टीरियो वाद्य रहते हैं।</string>
     <string name="animated_cover_cellular">मोबाइल डेटा पर एनिमेटेड कवर चलाएं</string>
     <string name="replay">Replay</string>
     <string name="replay_subtitle">आपके टॉप गाने, कलाकार, एल्बम और शैलियां</string>

@@ -154,6 +154,8 @@
     <string name="dolby_atmos_unavailable">This device can\'t play Atmos, so these songs play in their usual version</string>
     <string name="spatial_audio">Spatial audio</string>
     <string name="spatial_audio_subtitle">Widens stereo tracks for a more immersive feel</string>
+    <string name="vocal_off">Vocal off</string>
+    <string name="vocal_off_subtitle">Karaoke: strip the singing band from every channel. Bass and air stay; mids (voice, some instruments) drop.</string>
     <string name="animated_cover_cellular">Play animated cover over cellular</string>
     <string name="replay">Replay</string>
     <string name="replay_subtitle">Your top songs, artists, albums and genres</string>

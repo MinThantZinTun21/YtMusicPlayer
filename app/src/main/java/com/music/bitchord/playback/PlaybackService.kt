@@ -302,6 +302,8 @@ class PlaybackService : MediaLibraryService() {
      */
     private val spatialAudioProcessorA = SpatialAudioProcessor()
     private val spatialAudioProcessorB = SpatialAudioProcessor()
+    private val vocalOffProcessorA = VocalOffProcessor()
+    private val vocalOffProcessorB = VocalOffProcessor()
     private val transitionFilterA = TransitionFilterProcessor()
     private val transitionFilterB = TransitionFilterProcessor()
 
@@ -721,6 +723,7 @@ class PlaybackService : MediaLibraryService() {
             )
             activeTrackIsDolbyAtmos = NerdStats.isDolbyAtmosMime(format.sampleMimeType)
             applySpatialAudioEnabled()
+            applyVocalOffEnabled()
             publishNerdStats()
         }
 
@@ -1112,8 +1115,18 @@ class PlaybackService : MediaLibraryService() {
             .setLoadErrorHandlingPolicy(PermanentAwareLoadErrorPolicy())
 
         configuredFloatOutput = shouldEnableFloatOutput()
-        val exoPlayer = buildPlayer(spatialAudioProcessorA, transitionFilterA, ownsSession = true)
-        val sparePlayer = buildPlayer(spatialAudioProcessorB, transitionFilterB, ownsSession = false)
+        val exoPlayer = buildPlayer(
+            spatialAudioProcessorA,
+            vocalOffProcessorA,
+            transitionFilterA,
+            ownsSession = true,
+        )
+        val sparePlayer = buildPlayer(
+            spatialAudioProcessorB,
+            vocalOffProcessorB,
+            transitionFilterB,
+            ownsSession = false,
+        )
         player = exoPlayer
         spare = sparePlayer
         // Both sinks feed the same session id, so the system equalizer and any
@@ -1394,10 +1407,11 @@ class PlaybackService : MediaLibraryService() {
      */
     private fun buildPlayer(
         spatial: SpatialAudioProcessor,
+        vocalOff: VocalOffProcessor,
         filter: TransitionFilterProcessor,
         ownsSession: Boolean,
     ): ExoPlayer = ExoPlayer.Builder(this)
-        .setRenderersFactory(silenceSkippingRenderers(spatial, filter))
+        .setRenderersFactory(silenceSkippingRenderers(spatial, vocalOff, filter))
         .setMediaSourceFactory(requireNotNull(mediaSourceFactory))
         .setLoadControl(farBufferingLoadControl())
         .setAudioAttributes(AUDIO_ATTRIBUTES, /* handleAudioFocus = */ ownsSession)
@@ -1536,6 +1550,7 @@ class PlaybackService : MediaLibraryService() {
         // corrects it — see [formatListener]'s onAudioInputFormatChanged.
         activeTrackIsDolbyAtmos = NerdStats.declaredFormat(mediaItem?.mediaId)?.isDolbyAtmos == true
         applySpatialAudioEnabled()
+        applyVocalOffEnabled()
 
         // Keep a real, bounded history in the player rather than merely hiding
         // old rows in Compose. MediaController mirrors the playlist across the
@@ -3646,6 +3661,7 @@ class PlaybackService : MediaLibraryService() {
      */
     private fun silenceSkippingRenderers(
         spatial: SpatialAudioProcessor,
+        vocalOff: VocalOffProcessor,
         transition: TransitionFilterProcessor,
     ) = object : DefaultRenderersFactory(this) {
         init {
@@ -3687,10 +3703,11 @@ class PlaybackService : MediaLibraryService() {
             .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
             .setAudioProcessorChain(
                 DefaultAudioSink.DefaultAudioProcessorChain(
-                    // Transition filtering last of the two: widening is a
-                    // property of the track, and a bass swap that ran before it
-                    // would have its own low end fed back in by the crossfeed.
-                    arrayOf(spatial, transition),
+                    // Vocal-off first so the center cut sees the original mix,
+                    // then widening, then Automix EQ. A bass swap that ran
+                    // before spatial would have its own low end fed back in
+                    // by the crossfeed.
+                    arrayOf(vocalOff, spatial, transition),
                     SilenceSkippingAudioProcessor(
                         MIN_SILENCE_US,
                         SilenceSkippingAudioProcessor.DEFAULT_SILENCE_RETENTION_RATIO,
@@ -3776,8 +3793,18 @@ class PlaybackService : MediaLibraryService() {
         configuredFloatOutput = enableFloat
         activeFilter = transitionFilterA
         spareFilter = transitionFilterB
-        val newActive = buildPlayer(spatialAudioProcessorA, transitionFilterA, ownsSession = true)
-        val newSpare = buildPlayer(spatialAudioProcessorB, transitionFilterB, ownsSession = false)
+        val newActive = buildPlayer(
+            spatialAudioProcessorA,
+            vocalOffProcessorA,
+            transitionFilterA,
+            ownsSession = true,
+        )
+        val newSpare = buildPlayer(
+            spatialAudioProcessorB,
+            vocalOffProcessorB,
+            transitionFilterB,
+            ownsSession = false,
+        )
         player = newActive
         spare = newSpare
         newSpare.audioSessionId = newActive.audioSessionId
@@ -3868,6 +3895,9 @@ class PlaybackService : MediaLibraryService() {
         scope.launch {
             AppSettings.spatialAudio.collect { applySpatialAudioEnabled() }
         }
+        scope.launch {
+            AppSettings.vocalOff.collect { applyVocalOffEnabled() }
+        }
     }
 
     /**
@@ -3881,6 +3911,17 @@ class PlaybackService : MediaLibraryService() {
         val enabled = AppSettings.spatialAudio.value && !activeTrackIsDolbyAtmos
         spatialAudioProcessorA.enabled = enabled
         spatialAudioProcessorB.enabled = enabled
+    }
+
+    /**
+     * Karaoke on a Dolby Atmos (E-AC-3 JOC) stream would be cutting a stereo
+     * downmix of an object mix. Force it off there the same way spatial audio
+     * is; stereo PCM still gets the center cut.
+     */
+    private fun applyVocalOffEnabled() {
+        val enabled = AppSettings.vocalOff.value && !activeTrackIsDolbyAtmos
+        vocalOffProcessorA.enabled = enabled
+        vocalOffProcessorB.enabled = enabled
     }
 
     private fun observeScrobbling() {

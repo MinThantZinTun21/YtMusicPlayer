@@ -286,6 +286,12 @@ object AppSettings {
      * us a stereo stream, so there's no Atmos-style source to render.
      */
     val spatialAudio = MutableStateFlow(false)
+
+    /**
+     * Live karaoke / vocal-off via [com.music.bitchord.playback.VocalOffProcessor]:
+     * attenuates the centered vocal band on stereo mixes. Off by default.
+     */
+    val vocalOff = MutableStateFlow(false)
     val playbackSpeed = MutableStateFlow(1.0f)
     val themeMode = MutableStateFlow(ThemeMode.DARK)
 
@@ -632,6 +638,7 @@ object AppSettings {
         preferUsbDac.value = prefs.getBoolean(KEY_PREFER_USB_DAC, false)
         dolbyAtmos.value = prefs.getBoolean(KEY_DOLBY_ATMOS, true)
         spatialAudio.value = prefs.getBoolean(KEY_SPATIAL_AUDIO, false)
+        vocalOff.value = prefs.getBoolean(KEY_VOCAL_OFF, false)
         playbackSpeed.value = prefs.getFloat(KEY_SPEED, 1.0f)
         themeMode.value = runCatching {
             ThemeMode.valueOf(prefs.getString(KEY_THEME, null) ?: "DARK")
@@ -870,6 +877,11 @@ object AppSettings {
     fun setSpatialAudio(value: Boolean) {
         spatialAudio.value = value
         prefs.edit().putBoolean(KEY_SPATIAL_AUDIO, value).apply()
+    }
+
+    fun setVocalOff(value: Boolean) {
+        vocalOff.value = value
+        prefs.edit().putBoolean(KEY_VOCAL_OFF, value).apply()
     }
 
     fun setPlaybackSpeed(value: Float) {
@@ -1407,6 +1419,7 @@ object AppSettings {
     private const val KEY_PREFER_USB_DAC = "prefer_usb_dac"
     private const val KEY_DOLBY_ATMOS = "dolby_atmos"
     private const val KEY_SPATIAL_AUDIO = "spatial_audio"
+    private const val KEY_VOCAL_OFF = "vocal_off"
     private const val KEY_SPEED = "playback_speed"
     private const val KEY_THEME = "theme_mode"
     private const val KEY_AUTOPLAY = "autoplay"

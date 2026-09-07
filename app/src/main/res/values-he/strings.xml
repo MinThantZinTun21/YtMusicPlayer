@@ -134,6 +134,8 @@
     <string name="download_wifi_only">הורדה ב-Wi-Fi בלבד</string>
     <string name="spatial_audio">אודיו מרחבי</string>
     <string name="spatial_audio_subtitle">מרחיב רצועות סטריאו לתחושה סוחפת יותר</string>
+    <string name="vocal_off">בלי שירה</string>
+    <string name="vocal_off_subtitle">קריוקי: מנמיך שירה ממורכזת במיקסים סטריאו. בס וכלי נגינה סטריאו נשארים.</string>
     <string name="animated_cover_cellular">הפעלת עטיפה מונפשת ברשת הסלולרית</string>
     <string name="replay">Replay</string>
     <string name="replay_subtitle">השירים, האמנים, האלבומים והז\'אנרים המובילים שלך</string>

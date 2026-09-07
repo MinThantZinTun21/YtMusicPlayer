@@ -134,6 +134,8 @@
     <string name="download_wifi_only">Pobieraj tylko przez Wi-Fi</string>
     <string name="spatial_audio">Dźwięk przestrzenny</string>
     <string name="spatial_audio_subtitle">Większa immersja dzięki poszerzeniu utworów stereo</string>
+    <string name="vocal_off">Bez wokalu</string>
+    <string name="vocal_off_subtitle">Karaoke: wycisza wyśrodkowany wokal w miksach stereo. Bas i instrumenty stereo zostają.</string>
     <string name="animated_cover_cellular">Odtwarzaj animowaną okładkę w sieci komórkowej</string>
     <string name="replay">Replay</string>
     <string name="replay_subtitle">Twoje top utwory, artyści, albumy i gatunki</string>

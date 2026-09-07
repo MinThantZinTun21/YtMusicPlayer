@@ -52,6 +52,7 @@ import androidx.compose.material.icons.rounded.History
 import androidx.compose.material.icons.rounded.Language
 import androidx.compose.material.icons.rounded.LibraryMusic
 import androidx.compose.material.icons.rounded.LocalOffer
+import androidx.compose.material.icons.rounded.MicOff
 import androidx.compose.material.icons.rounded.MusicOff
 import androidx.compose.material.icons.rounded.MotionPhotosOff
 import androidx.compose.material.icons.rounded.Extension
@@ -180,6 +181,7 @@ fun SettingsScreen(
     // which caches the codec-list walk for the life of the process.
     val dolbyAtmosSupported = DeviceCodecs.playsDolbyAtmos
     val spatialAudio by AppSettings.spatialAudio.collectAsStateWithLifecycle()
+    val vocalOff by AppSettings.vocalOff.collectAsStateWithLifecycle()
     val nerdStats by AppSettings.showNerdStats.collectAsStateWithLifecycle()
     val reduceAnimation by AppSettings.reduceAnimation.collectAsStateWithLifecycle()
     val reduceDynamicBlur by AppSettings.reduceDynamicBlur.collectAsStateWithLifecycle()
@@ -541,6 +543,23 @@ fun SettingsScreen(
                     )
                 },
                 onClick = { AppSettings.setSpatialAudio(!spatialAudio) },
+            )
+            RowDivider()
+            SettingsRow(
+                icon = Icons.Rounded.MicOff,
+                title = stringResource(R.string.vocal_off),
+                subtitle = stringResource(R.string.vocal_off_subtitle),
+                trailing = {
+                    Switch(
+                        checked = vocalOff,
+                        onCheckedChange = AppSettings::setVocalOff,
+                        colors = SwitchDefaults.colors(
+                            checkedTrackColor = MaterialTheme.colorScheme.primary,
+                            checkedBorderColor = MaterialTheme.colorScheme.primary,
+                        ),
+                    )
+                },
+                onClick = { AppSettings.setVocalOff(!vocalOff) },
             )
             RowDivider()
             SettingsRow(

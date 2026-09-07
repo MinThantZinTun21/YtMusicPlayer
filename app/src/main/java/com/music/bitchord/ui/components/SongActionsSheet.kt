@@ -38,6 +38,7 @@ import androidx.compose.material.icons.rounded.ErrorOutline
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.rounded.HighQuality
+import androidx.compose.material.icons.rounded.MicOff
 import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.Radio
 import androidx.compose.material.icons.rounded.PlaylistRemove
@@ -77,6 +78,7 @@ import com.music.bitchord.data.model.Song
 import com.music.bitchord.data.model.artworkAt
 import com.music.bitchord.download.DownloadState
 import com.music.bitchord.download.Downloads
+import com.music.bitchord.data.settings.AppSettings
 import com.music.bitchord.playback.SleepTimer
 import com.music.bitchord.ui.components.thumbnailBorder
 import com.music.bitchord.ui.theme.ArtworkPalette
@@ -290,6 +292,17 @@ fun SongActionsSheet(
             ) { onOpenArtist(id) }
         }
         if (showSleepTimer) {
+            val vocalOff by AppSettings.vocalOff.collectAsStateWithLifecycle()
+            ActionRow(
+                icon = Icons.Rounded.MicOff,
+                label = stringResource(R.string.vocal_off),
+                value = if (vocalOff) {
+                    stringResource(R.string.enabled)
+                } else {
+                    stringResource(R.string.off)
+                },
+                accent = palette.accent,
+            ) { AppSettings.setVocalOff(!vocalOff) }
             ActionRow(
                 icon = Icons.Rounded.Bedtime,
                 label = stringResource(R.string.sleep_timer),

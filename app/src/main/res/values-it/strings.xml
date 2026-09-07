@@ -145,6 +145,8 @@
     <string name="revert_to_original">Ripristina originale</string>
     <string name="spatial_audio">Audio spaziale</string>
     <string name="spatial_audio_subtitle">Amplia le tracce stereo per un ascolto più immersivo</string>
+    <string name="vocal_off">Senza voce</string>
+    <string name="vocal_off_subtitle">Karaoke: attenua le voci al centro nei mix stereo. Basso e strumenti stereo restano.</string>
     <string name="animated_cover_cellular">Riproduci copertina animata con dati mobili</string>
     <string name="replay">Replay</string>
     <string name="replay_subtitle">I tuoi brani, artisti, album e generi più ascoltati</string>
