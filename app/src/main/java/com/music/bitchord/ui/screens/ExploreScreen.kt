@@ -135,7 +135,7 @@ private fun MoodGenreCard(
     Box(
         modifier = modifier
             .height(100.dp)
-            .clip(RoundedCornerShape(8.dp))
+            .clip(MaterialTheme.shapes.large)
             .background(
                 Brush.linearGradient(
                     listOf(color, color.copy(red = color.red * .68f, green = color.green * .68f, blue = color.blue * .68f)),
@@ -196,8 +196,8 @@ private fun ExploreSkeleton() {
                 modifier = Modifier.padding(bottom = 12.dp),
             ) {
                 repeat(2) {
-                    Box(Modifier.weight(1f).height(100.dp).clip(RoundedCornerShape(8.dp))) {
-                        ShimmerBox(Modifier.fillMaxSize(), RoundedCornerShape(8.dp))
+                    Box(Modifier.weight(1f).height(100.dp).clip(MaterialTheme.shapes.large)) {
+                        ShimmerBox(Modifier.fillMaxSize(), MaterialTheme.shapes.large)
                         ShimmerBox(
                             Modifier
                                 .align(Alignment.BottomEnd)

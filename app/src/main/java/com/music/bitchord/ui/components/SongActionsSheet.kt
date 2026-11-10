@@ -725,8 +725,8 @@ internal fun SheetTrackHeader(
             contentDescription = null,
             modifier = Modifier
                 .size(52.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .thumbnailBorder(RoundedCornerShape(8.dp))
+                .clip(ThumbnailShape)
+                .thumbnailBorder(ThumbnailShape)
                 .background(MaterialTheme.colorScheme.surfaceVariant),
         )
         Spacer(Modifier.width(14.dp))

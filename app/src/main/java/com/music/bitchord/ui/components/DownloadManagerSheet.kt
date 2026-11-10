@@ -280,8 +280,8 @@ private fun DownloadManagerRow(
                 contentDescription = null,
                 modifier = Modifier
                     .size(ART_SIZE)
-                    .clip(RoundedCornerShape(8.dp))
-                    .thumbnailBorder(RoundedCornerShape(8.dp))
+                    .clip(ThumbnailShape)
+                    .thumbnailBorder(ThumbnailShape)
                     .background(MaterialTheme.colorScheme.surfaceVariant),
             )
             // A finished or failed track is stated over its own cover rather
@@ -291,7 +291,7 @@ private fun DownloadManagerRow(
                 Box(
                     modifier = Modifier
                         .size(ART_SIZE)
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(ThumbnailShape)
                         .background(Color.Black.copy(alpha = 0.45f)),
                     contentAlignment = Alignment.Center,
                 ) {

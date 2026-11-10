@@ -193,6 +193,9 @@
     <string name="show_nerd_stats">Mostrar estatísticas técnicas</string>
     <string name="show_nerd_stats_subtitle">Codec, taxa de bits e taxa de amostragem no player</string>
     <string name="theme">Tema</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">As cores seguem o papel de parede (Android 12+)</string>
+    <string name="material_you_unavailable">Requer Android 12 ou mais recente</string>
     <string name="reduce_animation">Reduzir animação</string>
     <string name="reduce_animation_subtitle">Congela o gradiente do player principal em vez de mover</string>
     <string name="reduce_dynamic_blur">Reduzir desfoque dinâmico</string>

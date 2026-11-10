@@ -2,6 +2,7 @@ package com.music.bitchord.ui.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.animation.animateColorAsState
@@ -54,9 +55,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.graphics.drawscope.clipRect
 import androidx.compose.ui.text.style.TextAlign
@@ -69,16 +72,12 @@ import com.music.bitchord.R
 import com.music.bitchord.data.model.ROW_ART_PX
 import com.music.bitchord.data.model.Song
 import com.music.bitchord.data.model.artworkAt
-import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.ui.composed
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.foundation.border
 
 fun Modifier.thumbnailBorder(shape: Shape): Modifier = composed {
     this.border(
         width = 1.dp,
-        color = if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.15f) else Color.Black.copy(alpha = 0.15f),
-        shape = shape
+        color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+        shape = shape,
     )
 }
 
@@ -90,7 +89,13 @@ fun Modifier.thumbnailBorder(shape: Shape): Modifier = composed {
  * below them rather than stepping in from them. One constant, shared by the
  * bars and the pages, is what keeps that true.
  */
-val PAGE_GUTTER = 10.dp
+val PAGE_GUTTER = 16.dp
+
+/** Album/track thumbnail corner — Material 3 medium shape. */
+val ThumbnailShape = RoundedCornerShape(12.dp)
+
+/** Hero Listen Now cards — Material 3 extra-large containers. */
+val HeroCardShape = RoundedCornerShape(28.dp)
 
 /** Where a divider under a track row starts: clear of the 52dp of artwork. */
 val ROW_DIVIDER_INSET = PAGE_GUTTER + 68.dp
@@ -485,8 +490,8 @@ private fun SongRowContent(
                 contentDescription = null,
                 modifier = Modifier
                     .size(52.dp)
-                    .clip(RoundedCornerShape(8.dp))
-                    .thumbnailBorder(RoundedCornerShape(8.dp))
+                    .clip(ThumbnailShape)
+                    .thumbnailBorder(ThumbnailShape)
                     .background(MaterialTheme.colorScheme.surfaceVariant),
             )
         }

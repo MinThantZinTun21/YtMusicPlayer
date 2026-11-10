@@ -276,7 +276,7 @@ fun BrowseActionsSheet(
 /** Which release the sheet is about: the same row the shelf card was. */
 @Composable
 private fun BrowseSheetHeader(target: BrowseTarget) {
-    val shape = if (target.type == BrowseType.ARTIST) CircleShape else RoundedCornerShape(8.dp)
+    val shape = if (target.type == BrowseType.ARTIST) CircleShape else ThumbnailShape
     Row(
         modifier = Modifier
             .fillMaxWidth()

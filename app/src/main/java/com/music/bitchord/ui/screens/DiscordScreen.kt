@@ -526,7 +526,7 @@ private fun NoticeCard(text: String, onDismiss: () -> Unit) {
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier
                     .align(Alignment.End)
-                    .clip(RoundedCornerShape(8.dp))
+                    .clip(MaterialTheme.shapes.extraLarge)
                     .clickable(onClick = onDismiss)
                     .padding(horizontal = 8.dp, vertical = 10.dp),
             )
@@ -660,7 +660,7 @@ private fun PresenceButton(label: String, enabled: Boolean, onClick: () -> Unit)
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
+            .clip(MaterialTheme.shapes.large)
             .background(MaterialTheme.colorScheme.outline.copy(alpha = if (enabled) 0.9f else 0.4f))
             .clickable(enabled = enabled, onClick = onClick)
             .padding(vertical = 9.dp),

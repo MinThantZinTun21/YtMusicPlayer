@@ -192,6 +192,9 @@
     <string name="show_nerd_stats">הצגת נתונים לחנונים</string>
     <string name="show_nerd_stats_subtitle">קודק, קצב סיביות ותדר דגימה בנגן</string>
     <string name="theme">ערכת נושא</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">הצבעים לפי הטפט (Android 12+)</string>
+    <string name="material_you_unavailable">דורש Android 12 ומעלה</string>
     <string name="reduce_animation">הפחתת אנימציה</string>
     <string name="reduce_animation_subtitle">מקפיא את הגרדיאנט של הנגן הראשי במקום לתת לו לנוע</string>
     <string name="reduce_dynamic_blur">הפחתת טשטוש דינמי</string>

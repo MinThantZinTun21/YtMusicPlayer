@@ -3163,7 +3163,7 @@ private fun CurrentLyricLine(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
-                .clip(RoundedCornerShape(8.dp))
+                .clip(MaterialTheme.shapes.medium)
                 .clickable(onClick = onClick)
                 .padding(vertical = 4.dp),
         ) {
@@ -3221,7 +3221,7 @@ private fun CurrentLyricLine(
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
+            .clip(MaterialTheme.shapes.medium)
             .clickable(onClick = onClick)
             .padding(vertical = 4.dp)
             .graphicsLayer {
@@ -4425,7 +4425,7 @@ private fun InlineQueueRow(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(8.dp))
+            .clip(MaterialTheme.shapes.medium)
             .background(if (dragging) Color.White.copy(alpha = 0.06f) else Color.Transparent)
             .clickable(onClick = onClick)
             .padding(vertical = 6.dp),

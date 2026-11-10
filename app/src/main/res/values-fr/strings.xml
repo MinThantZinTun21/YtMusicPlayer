@@ -192,6 +192,9 @@
     <string name="show_nerd_stats">Afficher les statistiques techniques</string>
     <string name="show_nerd_stats_subtitle">Codec, débit et fréquence d\'échantillonnage sur le lecteur</string>
     <string name="theme">Thème</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">Les couleurs suivent votre fond d’écran (Android 12+)</string>
+    <string name="material_you_unavailable">Nécessite Android 12 ou plus récent</string>
     <string name="reduce_animation">Réduire les animations</string>
     <string name="reduce_animation_subtitle">Fige le dégradé du lecteur principal au lieu de le faire dériver</string>
     <string name="reduce_dynamic_blur">Réduire le flou dynamique</string>

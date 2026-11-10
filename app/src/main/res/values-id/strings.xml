@@ -188,6 +188,9 @@
     <string name="show_nerd_stats">Tampilkan statistik teknis</string>
     <string name="show_nerd_stats_subtitle">Codec, bitrate, dan sample rate pada pemutar</string>
     <string name="theme">Tema</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">Warna mengikuti wallpaper Anda (Android 12+)</string>
+    <string name="material_you_unavailable">Memerlukan Android 12 atau lebih baru</string>
     <string name="reduce_animation">Kurangi animasi</string>
     <string name="reduce_animation_subtitle">Membekukan gradien pemutar utama alih-alih bergerak</string>
     <string name="reduce_dynamic_blur">Kurangi blur dinamis</string>

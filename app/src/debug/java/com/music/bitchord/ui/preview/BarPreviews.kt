@@ -157,11 +157,10 @@ private fun ChromeStack(scrolled: Boolean, withMiniPlayer: Boolean) {
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             if (withMiniPlayer) {
-                MiniPlayer(
+            MiniPlayer(
                     song = PreviewSong,
                     isPlaying = true,
                     isLoading = false,
-                    hazeState = hazeState,
                     onPlayPause = {},
                     onNext = {},
                     onExpand = {},
@@ -172,7 +171,6 @@ private fun ChromeStack(scrolled: Boolean, withMiniPlayer: Boolean) {
                 tabs = PreviewTabs,
                 selectedIndex = 0,
                 onTabSelected = {},
-                hazeState = hazeState,
             )
         }
     }
@@ -223,12 +221,10 @@ private fun MiniPlayerPreview() {
                 .padding(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
-            val haze = remember { HazeState() }
             MiniPlayer(
                 song = PreviewSong,
                 isPlaying = true,
                 isLoading = false,
-                hazeState = haze,
                 onPlayPause = {}, onNext = {}, onExpand = {},
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -236,7 +232,6 @@ private fun MiniPlayerPreview() {
                 song = PreviewSong.copy(title = "A considerably longer track title that has to truncate"),
                 isPlaying = false,
                 isLoading = false,
-                hazeState = haze,
                 onPlayPause = {}, onNext = {}, onExpand = {},
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -244,7 +239,6 @@ private fun MiniPlayerPreview() {
                 song = PreviewSong,
                 isPlaying = false,
                 isLoading = true,
-                hazeState = haze,
                 onPlayPause = {}, onNext = {}, onExpand = {},
                 modifier = Modifier.fillMaxWidth(),
             )

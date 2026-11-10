@@ -72,6 +72,7 @@ import com.music.bitchord.ui.components.MessageState
 import com.music.bitchord.ui.components.PAGE_GUTTER
 import com.music.bitchord.ui.components.ROW_DIVIDER_INSET
 import com.music.bitchord.ui.components.SongRow
+import com.music.bitchord.ui.components.ThumbnailShape
 import com.music.bitchord.ui.components.thumbnailBorder
 import com.music.bitchord.ui.components.songListSkeleton
 import com.music.bitchord.ui.haptics.Haptic
@@ -539,13 +540,13 @@ private fun BrowseRow(item: BrowseItem, onClick: () -> Unit, onLongPress: (() ->
             contentDescription = null,
             modifier = Modifier
                 .size(52.dp)
-                .clip(
+                    .clip(
                     if (item.type == BrowseType.ARTIST) CircleShape
-                    else RoundedCornerShape(8.dp),
+                    else ThumbnailShape,
                 )
                 .thumbnailBorder(
                     if (item.type == BrowseType.ARTIST) CircleShape
-                    else RoundedCornerShape(8.dp),
+                    else ThumbnailShape,
                 )
                 .background(MaterialTheme.colorScheme.surfaceVariant),
         )
@@ -591,8 +592,8 @@ private fun SearchFilterTabs(filter: SearchFilter, onFilterChange: (SearchFilter
                 modifier = Modifier
                     .clip(FILTER_PILL_SHAPE)
                     .background(
-                        if (selected) MaterialTheme.colorScheme.onBackground
-                        else MaterialTheme.colorScheme.surfaceVariant,
+                        if (selected) MaterialTheme.colorScheme.secondaryContainer
+                        else MaterialTheme.colorScheme.surfaceContainerHighest,
                     )
                     // Only the pill that isn't already selected has anything to
                     // report — re-tapping the current filter changes nothing, so
@@ -606,8 +607,8 @@ private fun SearchFilterTabs(filter: SearchFilter, onFilterChange: (SearchFilter
                 Text(
                     text = entry.label,
                     style = MaterialTheme.typography.labelLarge,
-                    color = if (selected) MaterialTheme.colorScheme.background
-                    else MaterialTheme.colorScheme.onBackground,
+                    color = if (selected) MaterialTheme.colorScheme.onSecondaryContainer
+                    else MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                 )
             }
@@ -616,7 +617,7 @@ private fun SearchFilterTabs(filter: SearchFilter, onFilterChange: (SearchFilter
 }
 
 /** Rounded, but well short of a capsule — the corner reads as a cut, not a curve. */
-private val FILTER_PILL_SHAPE = RoundedCornerShape(12.dp)
+private val FILTER_PILL_SHAPE = RoundedCornerShape(percent = 50)
 
 @Composable
 private fun SearchField(
@@ -637,11 +638,8 @@ private fun SearchField(
         modifier = modifier
             .fillMaxWidth()
             // Fixed height prevents the row from growing when text is entered
-            .height(46.dp)
-            .background(MaterialTheme.colorScheme.surfaceVariant, RoundedCornerShape(11.dp))
-            // Asymmetric: the magnifier is a button now and wants a real touch
-            // target, so it's given the room by pulling the field's own start
-            // padding in rather than by pushing the glyph and the text along.
+            .height(56.dp)
+            .background(MaterialTheme.colorScheme.surfaceContainerHigh, MaterialTheme.shapes.extraLarge)
             .padding(start = 8.dp, end = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

@@ -1,56 +1,139 @@
 package com.music.bitchord.ui.theme
 
 import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.Typography
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
-import androidx.core.view.WindowCompat
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.view.WindowCompat
 import com.music.bitchord.R
 
-// Apple Music's signature red. No longer the primary accent, but kept for the
-// spots (Replay's rank badge) that want that specific red regardless of theme.
+// Apple Music's signature red. Kept for Replay rank badges that want that
+// specific red regardless of the Material You seed.
 val AccentRed = Color(0xFFFA2D48)
 
-private val DarkColors = darkColorScheme(
-    primary = Color.White,
-    onPrimary = Color.Black,
-    background = Color.Black,
-    onBackground = Color.White,
-    surface = Color(0xFF0D0D0F),
-    onSurface = Color.White,
-    surfaceVariant = Color(0xFF1C1C1E),
-    onSurfaceVariant = Color(0xFF8E8E93),
-    outline = Color(0xFF2C2C2E),
+/**
+ * Static Material You fallback when wallpaper colors are unavailable
+ * (Android 11 and below, or the setting turned off). Terracotta seed — the
+ * same tonal family as Material 3's music-app examples.
+ */
+private val LightColors = lightColorScheme(
+    primary = Color(0xFF8F4C33),
+    onPrimary = Color(0xFFFFFFFF),
+    primaryContainer = Color(0xFFFFDBCF),
+    onPrimaryContainer = Color(0xFF3A0B00),
+    secondary = Color(0xFF77574C),
+    onSecondary = Color(0xFFFFFFFF),
+    secondaryContainer = Color(0xFFFFDBCF),
+    onSecondaryContainer = Color(0xFF2C160D),
+    tertiary = Color(0xFF6B5D2F),
+    onTertiary = Color(0xFFFFFFFF),
+    tertiaryContainer = Color(0xFFF4E2A7),
+    onTertiaryContainer = Color(0xFF221B00),
+    error = Color(0xFFBA1A1A),
+    onError = Color(0xFFFFFFFF),
+    errorContainer = Color(0xFFFFDAD6),
+    onErrorContainer = Color(0xFF410002),
+    background = Color(0xFFFFF8F6),
+    onBackground = Color(0xFF231A16),
+    surface = Color(0xFFFFF8F6),
+    onSurface = Color(0xFF231A16),
+    surfaceVariant = Color(0xFFF5DED6),
+    onSurfaceVariant = Color(0xFF53433E),
+    outline = Color(0xFF85736D),
+    outlineVariant = Color(0xFFD8C2BB),
+    inverseSurface = Color(0xFF392E2B),
+    inverseOnSurface = Color(0xFFFFEDE7),
+    inversePrimary = Color(0xFFFFB59A),
+    surfaceContainerLowest = Color(0xFFFFFFFF),
+    surfaceContainerLow = Color(0xFFFFF1EC),
+    surfaceContainer = Color(0xFFFCEAE4),
+    surfaceContainerHigh = Color(0xFFF6E4DE),
+    surfaceContainerHighest = Color(0xFFF0DFD8),
 )
 
-private val LightColors = lightColorScheme(
-    primary = Color.Black,
-    onPrimary = Color.White,
-    background = Color.White,
-    onBackground = Color.Black,
-    surface = Color(0xFFF7F7F9),
-    onSurface = Color.Black,
-    surfaceVariant = Color(0xFFF2F2F7),
-    onSurfaceVariant = Color(0xFF6E6E73),
-    outline = Color(0xFFE5E5EA),
+private val DarkColors = darkColorScheme(
+    primary = Color(0xFFFFB59A),
+    onPrimary = Color(0xFF55200A),
+    primaryContainer = Color(0xFF72351E),
+    onPrimaryContainer = Color(0xFFFFDBCF),
+    secondary = Color(0xFFE7BDB0),
+    onSecondary = Color(0xFF442A20),
+    secondaryContainer = Color(0xFF5D4035),
+    onSecondaryContainer = Color(0xFFFFDBCF),
+    tertiary = Color(0xFFD7C68D),
+    onTertiary = Color(0xFF3A2F05),
+    tertiaryContainer = Color(0xFF524619),
+    onTertiaryContainer = Color(0xFFF4E2A7),
+    error = Color(0xFFFFB4AB),
+    onError = Color(0xFF690005),
+    errorContainer = Color(0xFF93000A),
+    onErrorContainer = Color(0xFFFFDAD6),
+    background = Color(0xFF1A110E),
+    onBackground = Color(0xFFF0DFD8),
+    surface = Color(0xFF1A110E),
+    onSurface = Color(0xFFF0DFD8),
+    surfaceVariant = Color(0xFF53433E),
+    onSurfaceVariant = Color(0xFFD8C2BB),
+    outline = Color(0xFFA08D86),
+    outlineVariant = Color(0xFF53433E),
+    inverseSurface = Color(0xFFF0DFD8),
+    inverseOnSurface = Color(0xFF392E2B),
+    inversePrimary = Color(0xFF8F4C33),
+    surfaceContainerLowest = Color(0xFF140C0A),
+    surfaceContainerLow = Color(0xFF231A16),
+    surfaceContainer = Color(0xFF271E1A),
+    surfaceContainerHigh = Color(0xFF322824),
+    surfaceContainerHighest = Color(0xFF3D332F),
+)
+
+private val BitChordShapes = Shapes(
+    extraSmall = RoundedCornerShape(4.dp),
+    small = RoundedCornerShape(8.dp),
+    medium = RoundedCornerShape(12.dp),
+    large = RoundedCornerShape(16.dp),
+    extraLarge = RoundedCornerShape(28.dp),
 )
 
 /**
- * SF Pro Display, the face Apple Music itself is set in. Only the weights the
- * type scale actually asks for are bundled; Compose synthesises nothing, so a
- * missing weight would silently fall back to the nearest one shipped.
+ * Material 3 type, with [Typography.displayLarge] kept at headline size so
+ * existing screen titles ("Listen Now", "Library") do not jump to 57sp.
  */
+private val BitChordTypography = Typography().run {
+    copy(
+        displayLarge = displayLarge.copy(
+            fontSize = 32.sp,
+            lineHeight = 40.sp,
+            fontWeight = FontWeight.Normal,
+            letterSpacing = 0.sp,
+        ),
+        headlineLarge = headlineLarge.copy(fontWeight = FontWeight.Normal),
+        headlineMedium = headlineMedium.copy(fontWeight = FontWeight.Normal),
+        titleLarge = titleLarge.copy(fontWeight = FontWeight.Medium),
+        titleMedium = titleMedium.copy(fontWeight = FontWeight.Medium),
+        labelLarge = labelLarge.copy(fontWeight = FontWeight.Medium),
+        labelMedium = labelMedium.copy(fontWeight = FontWeight.Medium),
+        labelSmall = labelSmall.copy(fontWeight = FontWeight.Medium),
+    )
+}
+
+/** Bundled SF Pro. The Material You theme uses the platform typeface instead. */
 val SFProDisplay = FontFamily(
     Font(R.font.sf_pro_display_regular, FontWeight.W400),
     Font(R.font.sf_pro_display_medium, FontWeight.W500),
@@ -59,46 +142,24 @@ val SFProDisplay = FontFamily(
     Font(R.font.sf_pro_display_heavy, FontWeight.W800),
 )
 
-// Heavy, tight typography — the backbone of the Apple Music look.
-private val BitChordTypography = Typography(
-    displayLarge = TextStyle(fontWeight = FontWeight.W800, fontSize = 34.sp, letterSpacing = (-0.8).sp),
-    headlineLarge = TextStyle(fontWeight = FontWeight.W800, fontSize = 30.sp, letterSpacing = (-0.7).sp),
-    headlineMedium = TextStyle(fontWeight = FontWeight.W700, fontSize = 22.sp, letterSpacing = (-0.4).sp),
-    titleLarge = TextStyle(fontWeight = FontWeight.W700, fontSize = 20.sp, letterSpacing = (-0.3).sp),
-    titleMedium = TextStyle(fontWeight = FontWeight.W600, fontSize = 16.sp, letterSpacing = (-0.2).sp),
-    bodyLarge = TextStyle(fontWeight = FontWeight.W400, fontSize = 16.sp),
-    bodyMedium = TextStyle(fontWeight = FontWeight.W400, fontSize = 14.sp),
-    labelMedium = TextStyle(fontWeight = FontWeight.W600, fontSize = 12.sp),
-    labelSmall = TextStyle(fontWeight = FontWeight.W600, fontSize = 11.sp),
-).withFamily(SFProDisplay)
-
-/** Applies [family] to every style in the scale, so nothing is left on Roboto. */
-private fun Typography.withFamily(family: FontFamily) = Typography(
-    displayLarge = displayLarge.copy(fontFamily = family),
-    displayMedium = displayMedium.copy(fontFamily = family),
-    displaySmall = displaySmall.copy(fontFamily = family),
-    headlineLarge = headlineLarge.copy(fontFamily = family),
-    headlineMedium = headlineMedium.copy(fontFamily = family),
-    headlineSmall = headlineSmall.copy(fontFamily = family),
-    titleLarge = titleLarge.copy(fontFamily = family),
-    titleMedium = titleMedium.copy(fontFamily = family),
-    titleSmall = titleSmall.copy(fontFamily = family),
-    bodyLarge = bodyLarge.copy(fontFamily = family),
-    bodyMedium = bodyMedium.copy(fontFamily = family),
-    bodySmall = bodySmall.copy(fontFamily = family),
-    labelLarge = labelLarge.copy(fontFamily = family),
-    labelMedium = labelMedium.copy(fontFamily = family),
-    labelSmall = labelSmall.copy(fontFamily = family),
-)
-
 @Composable
 fun BitChordTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
+    val colorScheme = when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            val context = LocalContext.current
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> DarkColors
+        else -> LightColors
+    }
     MaterialTheme(
-        colorScheme = if (darkTheme) DarkColors else LightColors,
+        colorScheme = colorScheme,
         typography = BitChordTypography,
+        shapes = BitChordShapes,
         content = content,
     )
 }

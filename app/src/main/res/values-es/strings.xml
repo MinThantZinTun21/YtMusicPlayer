@@ -201,6 +201,9 @@
     <string name="show_nerd_stats">Mostrar datos técnicos</string>
     <string name="show_nerd_stats_subtitle">Códec, tasa de bits y frecuencia de muestreo en el reproductor</string>
     <string name="theme">Tema</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">Los colores siguen tu fondo de pantalla (Android 12+)</string>
+    <string name="material_you_unavailable">Requiere Android 12 o posterior</string>
     <string name="reduce_animation">Reducir animaciones</string>
     <string name="reduce_animation_subtitle">Detiene el degradado del reproductor principal</string>
     <string name="reduce_dynamic_blur">Reducir desenfoque dinámico</string>

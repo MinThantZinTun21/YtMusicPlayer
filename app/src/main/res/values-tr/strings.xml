@@ -213,6 +213,9 @@
     <string name="show_nerd_stats">Meraklılar için istatistikleri göster</string>
     <string name="show_nerd_stats_subtitle">Oynatıcıda codec, bit hızı ve örnekleme oranı</string>
     <string name="theme">Tema</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">Renkler duvar kâğıdınıza uyum sağlar (Android 12+)</string>
+    <string name="material_you_unavailable">Android 12 veya daha yenisi gerekir</string>
     <string name="reduce_animation">Animasyonu azalt</string>
     <string name="reduce_animation_subtitle">Ana oynatıcının gradyanını kaymak yerine dondurur</string>
     <string name="reduce_dynamic_blur">Dinamik bulanıklığı azalt</string>

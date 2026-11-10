@@ -104,6 +104,7 @@ import com.music.bitchord.ui.components.MessageState
 import com.music.bitchord.ui.components.PAGE_GUTTER
 import com.music.bitchord.ui.components.ROW_DIVIDER_INSET
 import com.music.bitchord.ui.components.SongRow
+import com.music.bitchord.ui.components.ThumbnailShape
 import com.music.bitchord.ui.components.thumbnailBorder
 import com.music.bitchord.ui.components.TopBarContentGap
 import com.music.bitchord.ui.components.topBarHeight
@@ -1152,7 +1153,7 @@ private fun AlbumRow(
  */
 @Composable
 private fun CollectionArtwork(url: String?, playlist: Boolean, size: Dp) {
-    val shape = RoundedCornerShape(8.dp)
+    val shape = ThumbnailShape
     Box(
         modifier = Modifier
             .size(size)

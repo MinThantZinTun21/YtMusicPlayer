@@ -120,7 +120,7 @@ fun SongRowSkeleton(index: Int = 0, circular: Boolean = false, modifier: Modifie
             .padding(horizontal = PAGE_GUTTER, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        ShimmerBox(Modifier.size(52.dp), if (circular) CircleShape else RoundedCornerShape(8.dp))
+        ShimmerBox(Modifier.size(52.dp), if (circular) CircleShape else ThumbnailShape)
         Spacer(Modifier.width(14.dp))
         Column(Modifier.weight(1f)) {
             SkeletonLine(fraction = TitleWidths[index % TitleWidths.size], height = 14.dp)

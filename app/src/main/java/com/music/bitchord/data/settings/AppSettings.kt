@@ -334,6 +334,9 @@ object AppSettings {
     /** Real backdrop-sampled glass (blur, lens refraction) on the floating nav bar, Android 12+ only. */
     val liquidGlass = MutableStateFlow(false)
 
+    /** Wallpaper-based Material You colors. Android 12+ only; ignored below that. */
+    val dynamicColor = MutableStateFlow(true)
+
     /** Blurs unfocused lyric lines, keeping the active line sharp. */
     val lyricsBlur = MutableStateFlow(true)
 
@@ -658,6 +661,7 @@ object AppSettings {
         dontRepeatSuggestions.value = prefs.getBoolean(KEY_DONT_REPEAT_SUGGESTIONS, false)
         reduceDynamicBlur.value = prefs.getBoolean(KEY_REDUCE_BLUR, false)
         liquidGlass.value = prefs.getBoolean(KEY_LIQUID_GLASS, false)
+        dynamicColor.value = prefs.getBoolean(KEY_DYNAMIC_COLOR, true)
         lyricsBlur.value = prefs.getBoolean(KEY_LYRICS_BLUR, true)
         if (highPerformanceMode.value) {
             reduceAnimation.value = false
@@ -938,6 +942,11 @@ object AppSettings {
     fun setLiquidGlass(value: Boolean) {
         liquidGlass.value = value
         prefs.edit().putBoolean(KEY_LIQUID_GLASS, value).apply()
+    }
+
+    fun setDynamicColor(value: Boolean) {
+        dynamicColor.value = value
+        prefs.edit().putBoolean(KEY_DYNAMIC_COLOR, value).apply()
     }
 
     fun setHighPerformanceMode(value: Boolean) {
@@ -1436,6 +1445,7 @@ object AppSettings {
     private const val KEY_DONT_REPEAT_SUGGESTIONS = "dont_repeat_suggestions"
     private const val KEY_REDUCE_BLUR = "reduce_dynamic_blur"
     private const val KEY_LIQUID_GLASS = "liquid_glass"
+    private const val KEY_DYNAMIC_COLOR = "dynamic_color"
     private const val KEY_LYRICS_BLUR = "lyrics_blur"
     private const val KEY_ANIMATED_CANVAS = "animated_canvas"
     private const val KEY_CANVAS_OVER_CELLULAR = "canvas_over_cellular"

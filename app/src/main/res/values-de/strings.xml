@@ -192,6 +192,9 @@
     <string name="show_nerd_stats">Technische Details anzeigen</string>
     <string name="show_nerd_stats_subtitle">Codec, Bitrate und Abtastrate im Player</string>
     <string name="theme">Design</string>
+    <string name="material_you">Material You</string>
+    <string name="material_you_subtitle">Farben folgen dem Hintergrundbild (Android 12+)</string>
+    <string name="material_you_unavailable">Benötigt Android 12 oder neuer</string>
     <string name="reduce_animation">Animationen reduzieren</string>
     <string name="reduce_animation_subtitle">Friert den Farbverlauf des Hauptplayers ein, statt ihn treiben zu lassen</string>
     <string name="reduce_dynamic_blur">Dynamische Unschärfe reduzieren</string>
